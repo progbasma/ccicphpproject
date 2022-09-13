@@ -2,7 +2,8 @@
 
 
 session_start();
-$_SESSION['user']="basma";
+
+
 
 
 ?>
@@ -94,7 +95,7 @@ $_SESSION['user']="basma";
 							?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">welcome <?php echo $_SESSION['user']?></a>
+								 aria-expanded="false">welcome <?php echo $_SESSION['user']['firstname']?></a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="#">profile</a></li>
 									<li class="nav-item"><a class="nav-link" href="logout.php">logout </a></li>

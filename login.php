@@ -1,6 +1,65 @@
 <?php
 include("includes/header.php");
 ?>
+<?php
+$message="";
+
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+	$loginemail=$_POST['email'];
+	$loginpassword=$_POST['password'];
+
+	$servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ecomm";
+
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    
+ 
+    $sql="SELECT * FROM `users` WHERE email=:loginemail";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':loginemail', $loginemail);
+
+    $stmt->execute();
+    $user=$stmt->fetch();
+	if($user)
+	{
+		if($user['password']==$loginpassword)
+		{
+				$_SESSION['user']=$user;
+
+				header('location:index.php');
+		}
+		else{
+			$message="Wrong password , you forget password?";
+
+		}
+
+	}
+	else{
+		$message="this email not foud , create a new user ";
+	}
+
+
+    
+    //echo "record deleted successfully ";
+    } catch(PDOException $e) {
+    $message= $e->getMessage();
+    }
+
+    $conn = null;
+
+    
+
+
+
+}
+?>
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap">
 		<div class="container">
@@ -18,12 +77,12 @@ include("includes/header.php");
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+						<form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" id="email" name="email" placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -35,7 +94,27 @@ include("includes/header.php");
 								<button type="submit" value="submit" class="primary-btn">Log In</button>
 								<a href="#">Forgot Password?</a>
 							</div>
+
+							<?php
+						if($message !=""):
+
+						?>
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<?php
+							echo $message;
+
+							?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					    </div>
+						<?php
+						endif;
+
+						?>
 						</form>
+
+
+						
+
 					</div>
 				</div>
 			</div>

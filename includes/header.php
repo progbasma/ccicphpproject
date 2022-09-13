@@ -1,11 +1,5 @@
 <?php
-
-
 session_start();
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -88,11 +82,9 @@ session_start();
 								</ul>
 							</li>
 							<li class="nav-item active"><a class="nav-link" href="contact.php">Contact</a></li>
-							<?php
-
-							if(isset($_SESSION['user'])):
-
-							?>
+								<?php
+									if(isset($_SESSION['user'])):
+								?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">welcome <?php echo $_SESSION['user']['firstname']?></a>
@@ -102,30 +94,21 @@ session_start();
 
 								</ul>
 							</li>
-
-
-							<?php
-
-							else:
-
-							?>
+								<?php
+									else:
+								?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">User</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-									<li class="nav-item"><a class="nav-link" href="#">Create user </a></li>
-									<li class="nav-item"><a class="nav-link" href="#">forget password</a></li>
-
+									<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+									<li class="nav-item"><a class="nav-link" href="#">Forget password</a></li>
 								</ul>
 							</li>
-
 							<?php
-
-							endif;
-							?>
-							
-						
+								endif;
+							?>												
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

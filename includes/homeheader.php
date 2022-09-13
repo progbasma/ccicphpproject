@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -80,6 +84,33 @@
 								</ul>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+							<?php
+									if(isset($_SESSION['user'])):
+								?>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">welcome <?php echo $_SESSION['user']['firstname']?></a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="#">profile</a></li>
+									<li class="nav-item"><a class="nav-link" href="logout.php">logout </a></li>
+
+								</ul>
+							</li>
+								<?php
+									else:
+								?>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">User</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+									<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+									<li class="nav-item"><a class="nav-link" href="#">Forget password</a></li>
+								</ul>
+							</li>
+							<?php
+								endif;
+							?>	
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

@@ -103,7 +103,7 @@ include('connection.php');
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
 									<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-									<li class="nav-item"><a class="nav-link" href="#">Forget password</a></li>
+									<li class="nav-item"><a class="nav-link" href="forgotpassword.php">Forgot password</a></li>
 								</ul>
 							</li>
 							<?php

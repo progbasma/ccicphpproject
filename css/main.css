@@ -4794,6 +4794,38 @@ label {
 
 /* End Login form Area css
 ============================================================================================ */
+/* Forgot password form Area css
+============================================================================================ */
+.forgotpassword {
+  background-image: url("..//img/keyboard.jpg");
+  min-height: 500px;
+  box-shadow: 0 0 10px #00000069;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+}
+.forgotpassword .col-lg-8{
+  margin: auto;
+  min-width: 600px;
+}
+.forgotpassword .login_form_inner{
+  margin: 30px 0;
+  padding: 20px 60px;
+  border-radius: 5px;
+  border: 1px solid #cacaca;
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0 20px #000000a8;
+}
+.forgotpassword h1{
+  color: white;
+  margin: 20px 0;
+}
+.forgotpassword .form-control{
+  background: none;
+  color: white;
+}
+/* End Forgot password form Area css
+============================================================================================ */
 /* Tracking Form Area css
 ============================================================================================ */
 .tracking_box_area .tracking_box_inner p {

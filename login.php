@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						</div>
 						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="primary-btn">Log In</button>
-							<a href="#">Forgot Password?</a>
+							<a href="forgotpassword.php">Forgot Password?</a>
 						</div>
 						<?php
 						if ($message != "") :

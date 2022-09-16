@@ -2,36 +2,35 @@
 include("includes/header.php");
 ?>
 <?php
-$message = "";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$loginemail = $_POST['email'];
-	$loginpassword = $_POST['password'];
-
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ecomm";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
+	$email = $_POST['email'];
+	$pass = $_POST['password'];
+	$phone = $_POST['phone'];
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = "SELECT * FROM `users` WHERE email=:loginemail";
+		$sql = "INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `Phone`) VALUES (:email,:password,:fname,:lname,:phone)";
 		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':loginemail', $loginemail);
-
+		$stmt->bindParam(':fname', $fname);
+		$stmt->bindParam(':lname', $lname);
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':password', $pass);
+		$stmt->bindParam(':phone', $phone);
+		
 		$stmt->execute();
-		$user = $stmt->fetch();
-		if ($user) {
-			if ($user['password'] == $loginpassword) {
-				$_SESSION['user'] = $user;
-				header('location:index.php');
-			} else {
-				$message = "Wrong password , you forget password?";
-			}
-		} else {
-			$message = "this email not foud , create a new user ";
-		}
+		echo "<script> alert('You have been registered');</script>";
 	} catch (PDOException $e) {
-		$message = $e->getMessage();
+		echo $sql . "<br>" . $e->getMessage()." ". $e->getLine();
 	}
+
 	$conn = null;
 }
 ?>
@@ -52,49 +51,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="col-lg-6">
 				<div class="login_form_inner">
 					<h3>Register as a new user</h3>
-					<form class="row login_form" style="max-width: 800px;" action="" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
-						<div class="col-lg-12 form-group">
+					<form class="row login_form" action="register.php" method="post" id="contactForm" novalidate="novalidate">
+						<div class="col-md-12 form-group">
 							<input type="text" class="form-control" id="fname" name="fname" placeholder="First name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First name'">
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="col-md-12 form-group">
 							<input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last name'">
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="col-md-12 form-group">
 							<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="col-md-12 form-group">
 							<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="col-md-12 form-group">
 							<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
 						</div>
-						<div class="col-lg-12 form-group">
-							<label for="gender" style="display: block;text-align: left;margin-left: 15px;font-size: 16px;">Your gender</label>
-							<select name="gender" class="form-control" id="gender">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
-						</div>
-						<div class="col-lg-12 form-group">
-							<label for="uploadedphoto" style="display: block;text-align: left;margin-left: 15px;font-size: 16px;">Your photo</label>
-							<input type="file" class="form-control" name="photo" id="uploadedphoto" style="cursor:pointer;">
-						</div>
-
-						<div class="col-lg-12 form-group">
+						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="primary-btn">Register</button>
 						</div>
-						<?php
-						if ($message != "") :
-						?>
-							<div class="alert alert-danger alert-dismissible fade show" role="alert">
-								<?php
-								echo $message;
-								?>
-								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-							</div>
-						<?php
-						endif;
-						?>
 					</form>
 				</div>
 			</div>

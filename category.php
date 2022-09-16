@@ -1,8 +1,6 @@
 <?php
 include("includes/header.php");
 
-
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,14 +11,11 @@ try {
 	// set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-
 	$sql = "SELECT count(products.name) AS 'quantity',category.name AS 'category name' FROM products INNER JOIN category ON products.category_id = category.id GROUP BY category.name;";
 	$stmt = $conn->prepare($sql);
 
 	$stmt->execute();
 	$data = $stmt->fetchAll();
-
 
 	$sql2 = "SELECT * FROM `products` ";
 	$stmt2 = $conn->prepare($sql2);
@@ -35,7 +30,6 @@ try {
 
 $conn = null;
 
-
 ?>
 <div class="container">
 	<div class="row">
@@ -44,26 +38,22 @@ $conn = null;
 				<div class="head">Browse Categories</div>
 				<ul class="main-categories">
 					<?php
-
 					if ($data) :
 						foreach ($data as $row) :
-
-
 					?>
-							<li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span class="lnr lnr-arrow-right"></span><?php echo $row['category name'] ?><span class="number">(<?php echo $row['quantity'] ?>)</span></a>
-
+							<li class="main-nav-list">
+								<a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable">
+									<span class="lnr lnr-arrow-right"></span>
+									<?php echo $row['category name'] ?><span class="number">(<?php echo $row['quantity'] ?>)
+									</span>
+								</a>
 							</li>
-
-
 						<?php
 						endforeach;
 					else :
-
 						?>
-
 					<?php
 					endif;
-
 					?>
 				</ul>
 			</div>
@@ -185,11 +175,9 @@ $conn = null;
 						endforeach;
 					else :
 						?>
-
 					<?php
 					endif;
 					?>
-
 				</div>
 			</section>
 			<!-- End Best Seller -->

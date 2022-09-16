@@ -152,7 +152,7 @@ $conn = null;
 						<!-- single product -->
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="img/<?php echo $product['photo']?>" alt="">
+								<img class="img-fluid" src="images/<?php echo $product['photo']?>" alt="">
 								<div class="product-details">
 									<h6><?php echo $product['name']?></h6>
 									<div class="price">

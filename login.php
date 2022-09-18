@@ -3,7 +3,10 @@ include("includes/header.php");
 ?>
 <?php
 $message = "";
-
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ecomm";
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	$loginemail = $_POST['email'];
 	$loginpassword = $_POST['password'];

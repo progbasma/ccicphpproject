@@ -8,8 +8,8 @@ include('includes/header.php');
                 <div class="login_box_img">
                     <img class="img-fluid" src="img/password.jpg" alt="">
                     <div class="hover">
-                        <h4>Forgot your password?</h4>
-                        <p>No problem your can change your password with your email</p>
+                        <h4>OTP Number? what is that?</h4>
+                        <p>It's the number we sent to your account email to change your password</p>
                         <a class="primary-btn" style="display: block; width: 50%; margin: 10px auto" href="login.php">Login as exist user</a>
                         <a class="primary-btn" style="display: block; width: 50%; margin: 10px auto" href="register.php">Create an Account</a>
                     </div>
@@ -17,13 +17,13 @@ include('includes/header.php');
             </div>
             <div class="col-lg-6">
                 <div class="login_form_inner" style="padding-top: 80px">
-                    <h5 style="width: 70%; margin: 10px auto">Enter the email of your account for which you want to change the password</h5>
-                    <form class="row login_form" action="check.php" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                    <h4 style="width: 70%; margin: 10px auto">Enter the code we have sent to your account to reset your password</h4>
+                    <form class="row login_form" action="changepassword.php" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
                         <div class="col-lg-12 form-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                            <input type="text" class="form-control" id="checkcode" name="code" placeholder="OTP Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'OTP Number'">
                         </div>
                         <div class="col-lg-12 form-group">
-                            <button type="submit" value="submit" class="primary-btn">Send</button>
+                            <button type="submit" value="submit" class="primary-btn">Check</button>
                         </div>
                     </form>
                 </div>

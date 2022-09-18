@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="login_box_img" style="height: 100%;">
-					<img class="img-fluid" style="height: 100%;" src="img/login.jpg" alt="">
+				<div class="login_box_img">
+					<img class="img-fluid" src="img/login.jpg" alt="">
 					<div class="hover">
 						<h4>Already have an account?</h4>
 						<p>You can login with your account instead of registering again</p>

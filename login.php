@@ -4,7 +4,7 @@ include("includes/header.php");
 <?php
 $message = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	$loginemail = $_POST['email'];
 	$loginpassword = $_POST['password'];
 

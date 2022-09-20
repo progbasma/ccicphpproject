@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$lname = $_POST['lname'];
 	$email = $_POST['email'];
 	$pass = $_POST['password'];
+	$pass = md5($pass);
 	$phone = $_POST['phone'];
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

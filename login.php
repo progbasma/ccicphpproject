@@ -10,6 +10,7 @@ $dbname = "ecomm";
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	$loginemail = $_POST['email'];
 	$loginpassword = $_POST['password'];
+	$loginpassword = md5($loginpassword);
 
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -24,8 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 		$user = $stmt->fetch();
 		if ($user) {
 			if ($user['password'] == $loginpassword) {
-				$_SESSION['user'] = $user;
-				header('location:index.php');
+				if($user['type']==1)
+				{
+					$_SESSION['admin'] = $user;
+					header('location:admin/index.php');
+				}
+				else{
+
+					$_SESSION['user'] = $user;
+					header('location:index.php');
+
+				}
+				
+				
 			} else {
 				$message = "Wrong password , you forget password?";
 			}

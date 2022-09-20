@@ -1,4 +1,6 @@
 <?php
+ob_start(); //save output except header
+
 include('connection.php');
 ?>
 

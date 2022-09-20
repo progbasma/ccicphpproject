@@ -1,11 +1,8 @@
 <?php
-include('includes/header.php');
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-    $email=$_POST['email'];
-
-
-
+/**
+ * This example shows settings to use when sending via Google's Gmail servers.
+ * The IMAP section shows how to save this message to the 'Sent Mail' folder using IMAP commands.
+ */
 
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
@@ -50,39 +47,32 @@ $mail->Username = "phptestmailwork@gmail.com";
 $mail->Password = "phptestmailwork1!";
 
 //Set who the message is to be sent from
-$mail->setFrom('phptestmailwork@gmail.com', 'admin');
+$mail->setFrom('from@example.com', 'First Last');
 
 //Set an alternative reply-to address
-$mail->addReplyTo('phptestmailwork@gmail.com', 'admin');
+$mail->addReplyTo('replyto@example.com', 'First Last');
 
 //Set who the message is to be sent to
-$mail->addAddress($email);
+$mail->addAddress('whoto@example.com', 'John Doe');
 
 //Set the subject line
-$mail->Subject = 'change password request';
+$mail->Subject = 'PHPMailer GMail SMTP test';
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 //$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
 
 //Replace the plain text body with one created manually
-$otpnum="";
-for($x=1;$x<9;$x++)
-{
-    $otpnum.=rand(0,9);
-}
-
-$mail->Body = 'welcome our user <br> your otp is : '.$otpnum;
+$mail->Body = 'This is a plain-text message body';
 
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');
 
 //send the message, check for errors
 if (!$mail->send()) {
-   // echo "Mailer Error: " . $mail->ErrorInfo;
+    echo "Mailer Error: " . $mail->ErrorInfo;
 } else {
     echo "Message sent!";
-   
     //Section 2: IMAP
     //Uncomment these to save your message in the 'Sent Mail' folder.
     #if (save_mail($mail)) {
@@ -107,41 +97,3 @@ function save_mail($mail) {
 
     return $result;
 }
-
-header('location:check.php?otp='.$otpnum);
-
-}
-?>
-<section class="login_box_area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="login_box_img">
-                    <img class="img-fluid" src="img/password.jpg" alt="">
-                    <div class="hover">
-                        <h4>Forgot your password?</h4>
-                        <p>No problem your can change your password with your email</p>
-                        <a class="primary-btn" style="display: block; width: 50%; margin: 10px auto" href="login.php">Login as exist user</a>
-                        <a class="primary-btn" style="display: block; width: 50%; margin: 10px auto" href="register.php">Create an Account</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="login_form_inner" style="padding-top: 80px">
-                    <h5 style="width: 70%; margin: 10px auto">Enter the email of your account for which you want to change the password</h5>
-                    <form class="row login_form" action="forgotpassword.php" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
-                        <div class="col-lg-12 form-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
-                        </div>
-                        <div class="col-lg-12 form-group">
-                            <button type="submit" value="submit" class="primary-btn">Send</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<?php
-include('includes/footer.php');
-?>

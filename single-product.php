@@ -6,7 +6,10 @@ $username = "root";
 $password = "";
 $dbname = "ecomm";
 
-if (isset($_GET["productid"])) {
+if (isset($_GET["productid"])) :
+
+
+
 	$proid = $_GET["productid"];
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -19,12 +22,13 @@ if (isset($_GET["productid"])) {
 
 		$stmt->execute();
 		$data = $stmt->fetch();
+		
 	} catch (PDOException $e) {
 		$message = $e->getMessage();
 	}
 
 	$conn = null;
-}
+
 ?>
 <!--================Single Product Area =================-->
 <div class="product_image_area">
@@ -239,6 +243,22 @@ if (isset($_GET["productid"])) {
 	</div>
 </section>
 <!-- End related-product Area -->
+
+
+<?php
+else:
+?>
+<div class="container p-5 text-center"><p> No product selected</p></div>
+
+<?php
+endif;
+
+?>
+
+
+
+
+
 <?php
 include("includes/footer.php");
 ?>

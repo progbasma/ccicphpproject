@@ -223,6 +223,7 @@ $conn = null;
 				<?php
 				if ($saleproducts) :
 					foreach ($saleproducts as $item) :
+						
 				?>
 						<!-- single product -->
 						<div class="col-lg-3 col-md-6">

@@ -11,7 +11,7 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT * FROM products WHERE `sale_percent` > 0 ORDER BY `sale_percent` DESC";
+    $sql = "SELECT * FROM products WHERE `sale_percent` > 1 ORDER BY `sale_percent` DESC";
     $stmt = $conn->prepare($sql);
 
     $stmt->execute();

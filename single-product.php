@@ -5,6 +5,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "ecomm";
+$data3=[];
 
 if (isset($_GET["productid"])) :
 
@@ -16,12 +17,23 @@ if (isset($_GET["productid"])) :
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = "SELECT products.id,products.name,products.description,products.price,products.photo,products.counter, category.name AS 'cate_name' FROM `products` INNER JOIN category ON products.category_id = category.id WHERE products.id=:productid;";
+		$sql = "SELECT products.id,products.name,products.description,products.price,products.photo,products.counter,products.category_id,category.name AS 'cate_name' FROM `products` INNER JOIN category ON products.category_id = category.id WHERE products.id=:productid;";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(':productid', $proid);
 
 		$stmt->execute();
 		$data = $stmt->fetch();
+
+
+		$catid=$data['category_id'];
+		$sql3 = "select * from products where category_id =:categoryid";
+		$stmt3= $conn->prepare($sql3);
+		$stmt3->bindParam(':categoryid', $catid);
+
+		$stmt3->execute();
+		$data3 = $stmt3->fetchAll();
+
+
 		
 	} catch (PDOException $e) {
 		$message = $e->getMessage();
@@ -144,6 +156,55 @@ $message= $e->getMessage();
 			<?php 
 
 foreach($dealsoftheweek as $x):
+						 ?>
+						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+							<div class="single-related-product d-flex">
+								<a href="#"><img style="width:100px" src="images/<?php echo $x['photo']?>" alt=""></a>
+								<div class="desc">
+									<a href="#" class="title"><?php echo $x['name']?></a>
+									<div class="price">
+										<h6><?php echo $x['price']?></h6>
+										<h6 class="l-through">$210.00</h6>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php endforeach; ?>
+					</div>
+				
+				</div>
+			<div class="col-lg-3">
+				<div class="ctg-right">
+					<a href="#" target="_blank">
+						<img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End related-product Area -->
+
+
+
+
+<!-- Start related-product Area -->
+<section class="related-product-area section_gap_bottom">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 text-center">
+				<div class="section-title">
+					<h1>Related products</h1>
+					
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-9">
+				<div class="row">
+			<?php 
+
+foreach($data3 as $x):
 						 ?>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">

@@ -163,8 +163,7 @@ foreach($dealsoftheweek as $x):
 								<div class="desc">
 									<a href="#" class="title"><?php echo $x['name']?></a>
 									<div class="price">
-										<h6><?php echo $x['price']?></h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6><?php echo $x['price']?></h6>										
 									</div>
 								</div>
 							</div>
@@ -212,8 +211,7 @@ foreach($data3 as $x):
 								<div class="desc">
 									<a href="#" class="title"><?php echo $x['name']?></a>
 									<div class="price">
-										<h6><?php echo $x['price']?></h6>
-										<h6 class="l-through">$210.00</h6>
+										<h6><?php echo $x['price']?></h6>										
 									</div>
 								</div>
 							</div>

@@ -1,5 +1,27 @@
 <?php
 include('includes/header.php');
+$message="";
+//?otp=68433958userid=33
+if(isset($_GET['userid']))
+{
+    $otp=$_GET['otp'];
+
+    $userid=$_GET['userid'];
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+  $userotp=$_POST['code'];
+  if($userotp==$otp){
+
+        header("location:changepassword.php?userid=".$userid);
+  }
+  else{
+    $message="<a href='forgetpassword.php'>try again</a>";
+
+  }
+}
+
+}
+ 
 
 
 ?>
@@ -20,13 +42,14 @@ include('includes/header.php');
             <div class="col-lg-6">
                 <div class="login_form_inner" style="padding-top: 80px">
                     <h4 style="width: 70%; margin: 10px auto">Enter the code we have sent to your account to reset your password</h4>
-                    <form class="row login_form" action="changepassword.php" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                    <form class="row login_form" action="check.php" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
                         <div class="col-lg-12 form-group">
                             <input type="text" class="form-control" id="checkcode" name="code" placeholder="OTP Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'OTP Number'">
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" value="submit" class="primary-btn">Check</button>
                         </div>
+                        <div class="container text-danger"><?php echo $message?></div>
                     </form>
                 </div>
             </div>

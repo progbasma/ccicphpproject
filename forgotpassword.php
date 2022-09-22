@@ -1,12 +1,31 @@
 <?php
+$message="";
+$userid="";
 include('includes/header.php');
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
-    $email=$_POST['email'];
+    $loginemail=$_POST['email'];
+  
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "ecomm";
 
+	try {
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		// set the PDO error mode to exception
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+		$sql = "SELECT * FROM `users` WHERE email=:loginemail";
+		$stmt = $conn->prepare($sql);
+		$stmt->bindParam(':loginemail', $loginemail);
 
+		$stmt->execute();
+		$user = $stmt->fetch();
+		if ($user) {
+            $userid=$user['id'];
 
+            
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
@@ -71,7 +90,13 @@ for($x=1;$x<9;$x++)
 {
     $otpnum.=rand(0,9);
 }
+$surentuserid=$user['id'];
+$sql2 = "UPDATE `users` SET `reset_code`=:otpnum WHERE `id`=:curentuserid";
+		$stmt2 = $conn->prepare($sql2);
+		$stmt2->bindParam(':curentuserid', $surentuserid);
+        $stmt2->bindParam(':otpnum', $otpnum);
 
+		$stmt2->execute();
 $mail->Body = 'welcome our user <br> your otp is : '.$otpnum;
 
 //Attach an image file
@@ -108,7 +133,19 @@ function save_mail($mail) {
     return $result;
 }
 
-header('location:check.php?otp='.$otpnum);
+header('location:check.php?otp='.$otpnum."&userid=".$userid);
+
+            
+			
+		} else {
+			$message = "this email not foud , create a new user ";
+		}
+		
+	} catch (PDOException $e) {
+		$message = $e->getMessage();
+	}
+	$conn = null;
+
 
 }
 ?>
@@ -136,6 +173,7 @@ header('location:check.php?otp='.$otpnum);
                         <div class="col-lg-12 form-group">
                             <button type="submit" value="submit" class="primary-btn">Send</button>
                         </div>
+                        <div class="continer text-danger"><?php echo $message;?></div>
                     </form>
                 </div>
             </div>

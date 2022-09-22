@@ -34,10 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 
 					$_SESSION['user'] = $user;
 					header('location:index.php');
-
-				}
-				
-				
+				}								
 			} else {
 				$message = "Wrong password , you forget password?";
 			}

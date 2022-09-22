@@ -44,8 +44,7 @@ $conn = null;
                                 <div class="desc">
                                     <a href="single-product.php?productid=<?php echo $x['id'];?>" class="title"><?php echo $x['name'] ?></a>
                                     <div class="price">
-                                        <h6><?php echo $x['price'] ?></h6>
-                                        <h6 class="l-through">$210.00</h6>
+                                        <h6><?php echo $x['price'] ?></h6>                                        
                                     </div>
                                 </div>
                             </div>

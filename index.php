@@ -174,8 +174,7 @@ $conn = null;
 								<h6><?php echo $product['name'] ?>
 								</h6>
 								<div class="price">
-									<h6><?php echo $product['price'] ?></h6>
-									<h6 class="l-through">$210.00</h6>
+									<h6><?php echo $product['price'] ?></h6>									
 								</div>
 								<div class="prd-bottom">
 
@@ -311,8 +310,7 @@ $conn = null;
 						<img class="img-fluid" src="img/product/e-p1.png" alt="">
 						<div class="product-details">
 							<div class="price">
-								<h6>$150.00</h6>
-								<h6 class="l-through">$210.00</h6>
+								<h6>$150.00</h6>								
 							</div>
 							<h4>addidas New Hammer sole
 								for Sports person</h4>
@@ -327,8 +325,7 @@ $conn = null;
 						<img class="img-fluid" src="img/product/e-p1.png" alt="">
 						<div class="product-details">
 							<div class="price">
-								<h6>$150.00</h6>
-								<h6 class="l-through">$210.00</h6>
+								<h6>$150.00</h6>								
 							</div>
 							<h4>addidas New Hammer sole
 								for Sports person</h4>

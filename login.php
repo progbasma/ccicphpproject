@@ -1,4 +1,6 @@
 <?php
+include("includes/conn.php");
+
 include("includes/header.php");
 ?>
 <?php
@@ -12,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	$loginpassword = $_POST['password'];
 	$loginpassword = md5($loginpassword);
 
+	$conn=$pdo->open();
+
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		// set the PDO error mode to exception
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
 
 		$sql = "SELECT * FROM `users` WHERE email=:loginemail";
 		$stmt = $conn->prepare($sql);
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 				if($user['type']==1)
 				{
 					$_SESSION['admin'] = $user;
-					header('location:admin/index.php');
+					header('location:admin/home.php');
 				}
 				else{
 
@@ -45,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	} catch (PDOException $e) {
 		$message = $e->getMessage();
 	}
-	$conn = null;
+	
 }
 ?>
 <!--================Login Box Area =================-->

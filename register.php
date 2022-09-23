@@ -1,11 +1,9 @@
 <?php
 include("includes/header.php");
+
 ?>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecomm";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
@@ -14,9 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pass = md5($pass);
 	$phone = $_POST['phone'];
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		// set the PDO error mode to exception
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$conn=$pdo->open();
 
 		$sql = "INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `Phone`) VALUES (:email,:password,:fname,:lname,:phone)";
 		$stmt = $conn->prepare($sql);
@@ -31,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} catch (PDOException $e) {
 		echo $sql . "<br>" . $e->getMessage()." ". $e->getLine();
 	}
+	$conn->close();
 
-	$conn = null;
+	
 }
 ?>
 <!--================Login Box Area =================-->

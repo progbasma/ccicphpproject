@@ -4,11 +4,8 @@ include("includes/conn.php");
 include("includes/header.php");
 ?>
 <?php
-$message = "";
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecomm";
+$message="";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	$loginemail = $_POST['email'];
 	$loginpassword = $_POST['password'];
@@ -47,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_POST['email'])) {
 	} catch (PDOException $e) {
 		$message = $e->getMessage();
 	}
+	$conn=$pdo->close();
 	
 }
 ?>

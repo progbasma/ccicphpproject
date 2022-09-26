@@ -1,9 +1,12 @@
 <?php
 include('includes/header.php');
 if (isset($_GET['searchtext'])) {
+	$_GET['searchtext'] = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $_GET['searchtext']);
+	        $_GET['searchtext'] = preg_replace('#</*\w+:\w[^>]*+>#i', '', $_GET['searchtext']);
 
-	$searchtext = $_GET['searchtext'];
 
+	$searchtext = htmlspecialchars( $_GET['searchtext']);
+	        
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -71,7 +74,7 @@ if (isset($_GET['searchtext'])) {
 			else :
 				?>
 				<div class="container p-md-5 p-3">
-					<p class="text-center p-3 text-dark fw-bold">no such a thing called <?php echo $_GET['searchtext'] ?> </p>
+					<p class="text-center p-3 text-dark fw-bold">no such a thing called <?php echo htmlspecialchars( $_GET['searchtext']) ?> </p>
 				</div>
 			<?php
 			endif;

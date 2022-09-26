@@ -2,6 +2,8 @@
 ob_start();
 include('conn.php');
 include('session.php');
+header("X-XSS-Protection: 1; mode=block");
+
 ?>
 
 <!DOCTYPE html>

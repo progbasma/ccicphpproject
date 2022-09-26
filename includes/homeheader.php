@@ -1,5 +1,6 @@
 <?php
 ob_start(); //save output except header
+header("X-XSS-Protection: 1; mode=block");
 
 include('connection.php');
 ?>

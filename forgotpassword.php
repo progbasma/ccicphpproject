@@ -1,8 +1,10 @@
 <?php
 $message = "";
 include('includes/header.php');
-if (isset($_GET['message'])) {
-    $message = $_GET['message'];
+if(isset($_GET['message']))
+{
+    $message=$_GET['message'];
+
 }
 ?>
 <section class="login_box_area section_gap">

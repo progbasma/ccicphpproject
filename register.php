@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} catch (PDOException $e) {
 		echo $sql . "<br>" . $e->getMessage()." ". $e->getLine();
 	}
-	$conn->close();
+	$conn=$pdo->close();
 
 	
 }

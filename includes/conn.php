@@ -1,7 +1,6 @@
 <?php
 
-Class Database{
-  
+Class Database{ 
 	private $server = "mysql:host=localhost;dbname=ecomm";
 	private $username = "root";
 	private $password = "";
@@ -16,15 +15,10 @@ Class Database{
  		catch (PDOException $e){
  			echo "There is some problem in connection: " . $e->getMessage();
  		}
- 
     }
- 
 	public function close(){
    		$this->conn = null;
  	}
- 
 }
-
 $pdo = new Database();
- 
 ?>

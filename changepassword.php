@@ -1,55 +1,36 @@
 <?php
 include('includes/header.php');
-$message="";
-if(isset($_GET['userid']))
-{
-    $userid=$_GET['userid'];
-
+$message = "";
+if (isset($_GET['userid'])) {
+    $userid = $_GET['userid'];
 }
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-    $userid=$_POST['userid'];
-    $pass1=$_POST['pass1'];
-    $pass2=$_POST['pass2'];
-
-
-    if($pass1=$pass2)
-    {
-        $newpassword=md5($pass1);
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "ecomm";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $userid = $_POST['userid'];
+    $pass1 = $_POST['pass1'];
+    $pass2 = $_POST['pass2'];
+    if ($pass1 = $pass2) {
+        $newpassword = md5($pass1);
 
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn = $pdo->open();
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $sql = "UPDATE `users` SET `password`=:newpassword WHERE `id`=:userid";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':newpassword',$newpassword);
-            $stmt->bindParam(':userid',$userid);
-
+            $stmt->bindParam(':newpassword', $newpassword);
+            $stmt->bindParam(':userid', $userid);
 
             $stmt->execute();
             header('location:login.php');
-
-            
         } catch (PDOException $e) {
             $message = $e->getMessage();
         }
 
-        $conn = null;
-
+        $conn = $pdo->close();;
+    } else {
+        $message = "password doesn't match";
     }
-    else{
-        $message="password doesn't match";
-        
-
-    }
-
 }
 ?>
 <section class="login_box_area section_gap">
@@ -70,10 +51,10 @@ if($_SERVER['REQUEST_METHOD']=='POST')
                     <h4 style="width: 70%; margin: 10px auto">Enter the code we have sent to your account to reset your password</h4>
                     <form class="row login_form" action="" method="post" id="contactForm" onsubmit="return(validate());">
                         <?php
-                        if(isset($_GET['userid'])):
+                        if (isset($_GET['userid'])) :
 
                         ?>
-                        <input type="hidden" name="userid" value="<?php echo $userid?>">
+                            <input type="hidden" name="userid" value="<?php echo $userid ?>">
 
                         <?php
                         endif;
@@ -105,11 +86,11 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     let lpass = document.querySelector('#pass2');
 
     function validate() {
-        if(fpass.value != lpass.value){
+        if (fpass.value != lpass.value) {
             alert("Password and confirm password are not same")
-            return(false);
+            return (false);
         }
-        
+
         return (true);
     }
 </script>

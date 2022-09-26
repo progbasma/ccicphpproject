@@ -1,34 +1,23 @@
 <?php
 include('includes/header.php');
-$message="";
+$message = "";
 //?otp=68433958userid=33
-if(isset($_GET['userid']))
-{
-    $otp=$_GET['otp'];
-
-
-    $userid=$_GET['userid'];
-
-
+if (isset($_GET['userid'])) {
+    $otp = $_GET['otp'];
+    $userid = $_GET['userid'];
 }
 
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-  $userotp=$_POST['code'];
-  $otpdb=$_POST['otpdb'];
-  $userid=$_POST['userid'];
-
-  if($userotp==$otpdb){
-
-        header("location:changepassword.php?userid=".$userid);
-  }
-  else{
-    $message="<a href='forgetpassword.php'>try again</a>";
-
-  }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $userotp = $_POST['code'];
+    $otpdb = $_POST['otpdb'];
+    $userid = $_POST['userid'];
+    if ($userotp == $otpdb) {
+        header("location:changepassword.php?userid=" . $userid);
+    } else {
+        $message = "The code you entered is not correct, please try again";
+        header('location:forgotpassword.php?message='.$message);
+    }
 }
- 
-
 
 ?>
 <section class="login_box_area section_gap">
@@ -51,22 +40,19 @@ if($_SERVER['REQUEST_METHOD']=='POST')
                     <form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
                         <div class="col-lg-12 form-group">
                             <?php
-                            if(isset($_GET['otp'])):
+                            if (isset($_GET['otp'])) :
                             ?>
-                            <input type="hidden" name="otpdb"value="<?php echo $otp?>">
-                            <input type="hidden" name="userid"value="<?php echo $userid?>">
-
-                             <?php
-                             endif;
-                             
-                             ?>
-
+                                <input type="hidden" name="otpdb" value="<?php echo $otp ?>">
+                                <input type="hidden" name="userid" value="<?php echo $userid ?>">
+                            <?php
+                            endif;
+                            ?>
                             <input type="text" class="form-control" id="checkcode" name="code" placeholder="OTP Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'OTP Number'">
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" value="submit" class="primary-btn">Check</button>
                         </div>
-                        <div class="container text-danger"><?php echo $message?></div>
+                        <div class="container text-danger"><?php echo $message ?></div>
                     </form>
                 </div>
             </div>

@@ -1,18 +1,12 @@
 <?php
 $message="";
 $userid="";
-
+include("includes/conn.php");
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
     $loginemail=$_POST['email'];
-  
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecomm";
-
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		$conn = $pdo->open();
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -23,9 +17,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 		$stmt->execute();
 		$user = $stmt->fetch();
 		if ($user) {
-            $userid=$user['id'];
-
-            
+            $userid=$user['id'];    
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
@@ -114,7 +106,6 @@ if (!$mail->send()) {
     #    echo "Message saved!";
     #}
 }
-
 //Section 2: IMAP
 //IMAP commands requires the PHP IMAP Extension, found at: https://php.net/manual/en/imap.setup.php
 //Function to call which uses the PHP imap_*() functions to save messages: https://php.net/manual/en/book.imap.php
@@ -132,22 +123,13 @@ function save_mail($mail) {
 
     return $result;
 }
-
 header('location:check.php?otp='.$otpnum."&userid=".$userid);
-
-            
-			
 		} else {
-			$message = "this email not foud , create a new user ";
+			$message = "This email not found , do you want to create a new user? "."<a href='register.php'>Create a new user</a>";
             header('location:forgotpassword.php?message='.$message);
-
 		}
-		
 	} catch (PDOException $e) {
 		$message = $e->getMessage();
 	}
-	$conn = null;
-
-
+	$conn = $pdo->close();
 }
-?>

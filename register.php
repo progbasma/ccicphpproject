@@ -50,21 +50,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="col-lg-6">
 				<div class="login_form_inner">
 					<h3>Register as a new user</h3>
-					<form class="row login_form" action="register.php" method="post" id="contactForm" novalidate="novalidate">
+					<form class="row login_form" action="register.php" method="post" id="contactForm" >
 						<div class="col-md-12 form-group">
-							<input type="text" class="form-control" id="fname" name="fname" placeholder="First name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First name'">
+							<input type="text" class="form-control" id="fname" name="fname" placeholder="First name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First name'"required>
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last name'">
+							<input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last name'"required>
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"required>
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"required>
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'">
+							<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'"required>
 						</div>
 						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="primary-btn">Register</button>

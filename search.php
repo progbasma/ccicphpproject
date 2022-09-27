@@ -1,8 +1,8 @@
 <?php
 include('includes/header.php');
 if (isset($_GET['searchtext'])) {
-	$_GET['searchtext'] = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $_GET['searchtext']);
-	        $_GET['searchtext'] = preg_replace('#</*\w+:\w[^>]*+>#i', '', $_GET['searchtext']);
+	
+			$_GET['searchtext']=filter_var ($_GET['searchtext'], FILTER_SANITIZE_STRING);
 
 
 	$searchtext = htmlspecialchars( $_GET['searchtext']);
@@ -78,6 +78,7 @@ if (isset($_GET['searchtext'])) {
 				</div>
 			<?php
 			endif;
+			
 			?>
 		</div>
 	</div>

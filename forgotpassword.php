@@ -3,7 +3,10 @@ $message = "";
 include('includes/header.php');
 if(isset($_GET['message']))
 {
-    $message=$_GET['message'];
+    
+    $_GET['message']=filter_var ($_GET['message'], FILTER_SANITIZE_STRING);
+    $message=( $_GET['message']);
+    
 
 }
 ?>

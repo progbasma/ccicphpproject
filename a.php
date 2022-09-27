@@ -125,7 +125,7 @@ function save_mail($mail) {
 }
 header('location:check.php?otp='.$otpnum."&userid=".$userid);
 		} else {
-			$message = "This email not found , do you want to create a new user? "."<a href='register.php'>Create a new user</a>";
+			$message = "This email not found, Please try again.";
             header('location:forgotpassword.php?message='.$message);
 		}
 	} catch (PDOException $e) {

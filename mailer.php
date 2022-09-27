@@ -44,16 +44,16 @@ $mail->SMTPAuth = true;
 $mail->Username = "phptestmailwork@gmail.com";
 
 //Password to use for SMTP authentication
-$mail->Password = "otqaolitxulpceqh";
+$mail->Password = "phptestmailwork1!";
 
 //Set who the message is to be sent from
-$mail->setFrom('phptestmailwork@gmail.com', 'mailer');
+$mail->setFrom('from@example.com', 'First Last');
 
 //Set an alternative reply-to address
-$mail->addReplyTo('prog.basma@gmail.com', 'basma ahmed');
+$mail->addReplyTo('replyto@example.com', 'First Last');
 
 //Set who the message is to be sent to
-$mail->addAddress('prog.basma@gmail.com', 'basma ahmed');
+$mail->addAddress('whoto@example.com', 'John Doe');
 
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';

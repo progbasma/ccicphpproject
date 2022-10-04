@@ -1,4 +1,53 @@
 <?php
+
+// Declare and define two dates
+$date1 = strtotime("+3 weeks -3days +2hours +30mins +30secs");
+$date2 = strtotime("next friday +1hours +30mins +30secs");
+
+// Formulate the Difference between two dates
+$diff = abs($date2 - $date1);
+
+
+// To get the year divide the resultant date into
+// total seconds in a year (365*60*60*24)
+$years = floor($diff / (365*60*60*24));
+
+// To get the month, subtract it with years and
+// divide the resultant date into
+// total seconds in a month (30*60*60*24)
+$months = floor(($diff - $years * 365*60*60*24)
+								/ (30*60*60*24));
+
+// To get the day, subtract it with years and
+// months and divide the resultant date into
+// total seconds in a days (60*60*24)
+$days = floor(($diff - $years * 365*60*60*24 -
+			$months*30*60*60*24)/ (60*60*24));
+
+// To get the hour, subtract it with years,
+// months & seconds and divide the resultant
+// date into total seconds in a hours (60*60)
+$hours = floor(($diff - $years * 365*60*60*24
+		- $months*30*60*60*24 - $days*60*60*24)
+									/ (60*60));
+
+// To get the minutes, subtract it with years,
+// months, seconds and hours and divide the
+// resultant date into total seconds i.e. 60
+$minutes = floor(($diff - $years * 365*60*60*24
+		- $months*30*60*60*24 - $days*60*60*24
+							- $hours*60*60)/ 60);
+
+// To get the minutes, subtract it with years,
+// months, seconds, hours and minutes
+$seconds = floor(($diff - $years * 365*60*60*24
+		- $months*30*60*60*24 - $days*60*60*24
+				- $hours*60*60 - $minutes*60));
+
+
+?>
+
+<?php
 include("includes/homeheader.php");
 
 $servername = "localhost";
@@ -278,30 +327,32 @@ $conn = null;
 				<div class="row clock_sec clockdiv" id="clockdiv">
 					<div class="col-lg-12">
 						<h1>Exclusive Hot Deal Ends Soon!</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
+						<h1 class="text-center"> 20% </h1>
 					</div>
 					<div class="col-lg-12">
 						<div class="row clock-wrap">
+					
 							<div class="col clockinner1 clockinner">
-								<h1 class="days">150</h1>
+								<h1 class="days"><?php echo $days?></h1>
 								<span class="smalltext">Days</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="hours">23</h1>
+								<h1 class="hours"><?php echo $hours?></h1>
 								<span class="smalltext">Hours</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="minutes">47</h1>
+								<h1 class="minutes"><?php echo $minutes?></h1>
 								<span class="smalltext">Mins</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="seconds">59</h1>
-								<span class="smalltext">Secs</span>
+								<h1 class="seconds"><?php echo $seconds?></h1>
+								<span class="smalltext">Seconds</span>
 							</div>
+							
 						</div>
 					</div>
 				</div>
-				<a href="" class="primary-btn">Shop Now</a>
+				<a href="category.php" class="primary-btn">Shop Now</a>
 			</div>
 			<div class="col-lg-6 no-padding exclusive-right">
 				<div class="active-exclusive-product-slider">
@@ -342,29 +393,7 @@ $conn = null;
 </section>
 <!-- End exclusive deal Area -->
 
-<!-- Start brand Area -->
-<section class="brand-area section_gap">
-	<div class="container">
-		<div class="row">
-			<a class="col single-img" href="#">
-				<img class="img-fluid d-block mx-auto" src="img/brand/1.png" alt="">
-			</a>
-			<a class="col single-img" href="#">
-				<img class="img-fluid d-block mx-auto" src="img/brand/2.png" alt="">
-			</a>
-			<a class="col single-img" href="#">
-				<img class="img-fluid d-block mx-auto" src="img/brand/3.png" alt="">
-			</a>
-			<a class="col single-img" href="#">
-				<img class="img-fluid d-block mx-auto" src="img/brand/4.png" alt="">
-			</a>
-			<a class="col single-img" href="#">
-				<img class="img-fluid d-block mx-auto" src="img/brand/5.png" alt="">
-			</a>
-		</div>
-	</div>
-</section>
-<!-- End brand Area -->
+
 
 <!-- Start related-product Area -->
 <?php

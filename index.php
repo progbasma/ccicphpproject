@@ -247,37 +247,34 @@ $conn = null;
 			</div>
 			<div class="col-lg-6 no-padding exclusive-right">
 				<div class="active-exclusive-product-slider">
+					<?php
+					if ($saleproducts) :
+						foreach ($saleproducts as $item) :
+							$img=$item['photo'];
+					?>
 					
 					<!-- single exclusive carousel -->
 					<div class="single-exclusive-slider">
-						<img class="img-fluid" src="img/product/e-p1.png" alt="">
+
+						<img class="img-fluid" src="images/<?php echo $img?>" alt="">
 						<div class="product-details">
 							<div class="price">
-								<h6>$150.00</h6>								
+								<h6><?php echo $item['price']?></h6>								
 							</div>
-							<h4>addidas New Hammer sole
-								for Sports person</h4>
+							<h4><?php echo $item['name']?></h4>
 							<div class="add-bag d-flex align-items-center justify-content-center">
 								<a class="add-btn" href=""><span class="ti-bag"></span></a>
 								<span class="add-text text-uppercase">Add to Bag</span>
 							</div>
 						</div>
 					</div>
-					<!-- single exclusive carousel -->
-					<div class="single-exclusive-slider">
-						<img class="img-fluid" src="img/product/e-p1.png" alt="">
-						<div class="product-details">
-							<div class="price">
-								<h6>$150.00</h6>								
-							</div>
-							<h4>addidas New Hammer sole
-								for Sports person</h4>
-							<div class="add-bag d-flex align-items-center justify-content-center">
-								<a class="add-btn" href=""><span class="ti-bag"></span></a>
-								<span class="add-text text-uppercase">Add to Bag</span>
-							</div>
-						</div>
-					</div>
+
+					<?php
+					endforeach;
+					endif;
+							
+					?>
+					
 				</div>
 			</div>
 		</div>

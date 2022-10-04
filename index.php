@@ -1,50 +1,5 @@
 <?php
 
-// Declare and define two dates
-$date1 = strtotime("+3 weeks -3days +2hours +30mins +30secs");
-$date2 = strtotime("next friday +1hours +30mins +30secs");
-
-// Formulate the Difference between two dates
-$diff = abs($date2 - $date1);
-
-
-// To get the year divide the resultant date into
-// total seconds in a year (365*60*60*24)
-$years = floor($diff / (365*60*60*24));
-
-// To get the month, subtract it with years and
-// divide the resultant date into
-// total seconds in a month (30*60*60*24)
-$months = floor(($diff - $years * 365*60*60*24)
-								/ (30*60*60*24));
-
-// To get the day, subtract it with years and
-// months and divide the resultant date into
-// total seconds in a days (60*60*24)
-$days = floor(($diff - $years * 365*60*60*24 -
-			$months*30*60*60*24)/ (60*60*24));
-
-// To get the hour, subtract it with years,
-// months & seconds and divide the resultant
-// date into total seconds in a hours (60*60)
-$hours = floor(($diff - $years * 365*60*60*24
-		- $months*30*60*60*24 - $days*60*60*24)
-									/ (60*60));
-
-// To get the minutes, subtract it with years,
-// months, seconds and hours and divide the
-// resultant date into total seconds i.e. 60
-$minutes = floor(($diff - $years * 365*60*60*24
-		- $months*30*60*60*24 - $days*60*60*24
-							- $hours*60*60)/ 60);
-
-// To get the minutes, subtract it with years,
-// months, seconds, hours and minutes
-$seconds = floor(($diff - $years * 365*60*60*24
-		- $months*30*60*60*24 - $days*60*60*24
-				- $hours*60*60 - $minutes*60));
-
-
 ?>
 
 <?php
@@ -127,73 +82,7 @@ $conn = null;
 </section>
 <!-- end features Area -->
 
-<!-- Start category Area -->
-<section class="category-area">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-8 col-md-12">
-				<div class="row">
-					<div class="col-lg-8 col-md-8">
-						<div class="single-deal">
-							<div class="overlay"></div>
-							<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
-							<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
-								<div class="deal-details">
-									<h6 class="deal-title">Sneaker for Sports</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4">
-						<div class="single-deal">
-							<div class="overlay"></div>
-							<img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
-							<a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
-								<div class="deal-details">
-									<h6 class="deal-title">Sneaker for Sports</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4">
-						<div class="single-deal">
-							<div class="overlay"></div>
-							<img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
-							<a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
-								<div class="deal-details">
-									<h6 class="deal-title">Product for Couple</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-8 col-md-8">
-						<div class="single-deal">
-							<div class="overlay"></div>
-							<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
-							<a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
-								<div class="deal-details">
-									<h6 class="deal-title">Sneaker for Sports</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="single-deal">
-					<div class="overlay"></div>
-					<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
-					<a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
-						<div class="deal-details">
-							<h6 class="deal-title">Sneaker for Sports</h6>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- End category Area -->
+
 
 <!-- start product Area -->
 <section class="owl-carousel active-product-area section_gap">
@@ -330,32 +219,35 @@ $conn = null;
 						<h1 class="text-center"> 20% </h1>
 					</div>
 					<div class="col-lg-12">
+						<div id="demo"></div>
 						<div class="row clock-wrap">
 					
 							<div class="col clockinner1 clockinner">
-								<h1 class="days"><?php echo $days?></h1>
+								<h1 class="days" id="d"></h1>
 								<span class="smalltext">Days</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="hours"><?php echo $hours?></h1>
+								<h1 class="hours" id="h"></h1>
 								<span class="smalltext">Hours</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="minutes"><?php echo $minutes?></h1>
+								<h1 class="minutes" id="m"></h1>
 								<span class="smalltext">Mins</span>
 							</div>
 							<div class="col clockinner clockinner1">
-								<h1 class="seconds"><?php echo $seconds?></h1>
+								<h1 class="seconds" id="s"></h1>
 								<span class="smalltext">Seconds</span>
 							</div>
 							
 						</div>
+					
 					</div>
 				</div>
 				<a href="category.php" class="primary-btn">Shop Now</a>
 			</div>
 			<div class="col-lg-6 no-padding exclusive-right">
 				<div class="active-exclusive-product-slider">
+					
 					<!-- single exclusive carousel -->
 					<div class="single-exclusive-slider">
 						<img class="img-fluid" src="img/product/e-p1.png" alt="">
@@ -393,7 +285,42 @@ $conn = null;
 </section>
 <!-- End exclusive deal Area -->
 
+<script>
 
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 5, 2023 15:37:25").getTime();
+
+// Update the count down every 1 second
+var countdownfunction = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+  
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+  
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Output the result in an element with id="demo"
+  //document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  //+ minutes + "m " + seconds + "s ";
+    // Output the result in an element with id="demo"
+	document.getElementById("d").innerHTML= days;
+	document.getElementById("h").innerHTML= hours;
+	document.getElementById("m").innerHTML= minutes;
+	document.getElementById("s").innerHTML= seconds;
+
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(countdownfunction);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
 
 <!-- Start related-product Area -->
 <?php
